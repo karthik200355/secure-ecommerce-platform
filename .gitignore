@@ -1,0 +1,85 @@
+# Java / Maven
+
+target/
+*.class
+*.jar
+*.war
+
+# Spring Boot
+
+application-local.properties
+application-local.yml
+.env
+
+# IntelliJ IDEA
+
+.idea/
+*.iml
+
+# Eclipse
+
+.classpath
+.project
+.settings/
+
+# VS Code
+
+.vscode/
+
+# Node / React
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+dist/
+build/
+
+# Logs
+
+*.log
+logs/
+
+# Operating System
+
+.DS_Store
+Thumbs.db
+
+# Environment / Secrets
+
+.env
+.env.*
+!.env.example
+
+# Temporary files
+
+*.tmp
+*.temp
+
+````
+
+Save it with:
+
+```text
+Ctrl + S
+````
+
+### 6.3 Check your project
+
+Your folder should now look like:
+
+```text
+secure-ecommerce-platform
+│
+├── .git/
+├── .gitignore
+└── README.md
+```
+
+That's all for this step.
+
+**Don't run `git add` yet.**
+
+When you have created and saved `.gitignore`, tell me:
+
+**done**
