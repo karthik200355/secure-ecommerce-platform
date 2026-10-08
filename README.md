@@ -1,3 +1,4 @@
+
 # Secure E-Commerce Platform
 
 A secure, scalable e-commerce application built using Java, Spring Boot, Microservices, Apache Kafka, React, and MySQL.
