@@ -1,0 +1,23 @@
+Understand the difference
+
+RegisterRequest → receives registration data from the frontend.
+
+User → represents the user record stored in MySQL.
+
+AuthService → will process the request and hash the password before saving it.
+
+
+
+Remember this flow
+
+SecurityConfig.java
+
+Creates the BCrypt encoder
+
+AuthService.java
+
+Uses the encoder during registration to hash the password
+
+MySQL — auth_db
+
+Stores the hashed password, not the original password
