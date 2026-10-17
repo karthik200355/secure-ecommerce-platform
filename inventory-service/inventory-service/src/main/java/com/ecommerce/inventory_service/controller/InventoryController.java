@@ -46,4 +46,15 @@ public class InventoryController {
                 request.getQuantity()
         );
     }
+        // Order cancel ayina leda payment fail ayina stock release chestundi.
+    @PostMapping("/release")
+    public Inventory releaseStock(
+            @Valid @RequestBody StockReservationRequest request) {
+
+        // Request nunchi product ID, quantity teesukoni service ni call chestunnam.
+        return inventoryService.releaseStock(
+                request.getProductId(),
+                request.getQuantity()
+        );
+    }
 }

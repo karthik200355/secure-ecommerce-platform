@@ -86,5 +86,47 @@ public class InventoryService {
         return inventoryRepository.save(inventory);
     }
 
+        // Order cancel ayina leda payment fail ayina reserved stock release chestundi.
+    @Transactional
+    public Inventory releaseStock(Long productId, Integer quantity) {
+
+        // Invalid quantity ni reject chestunnam.
+        if (quantity == null || quantity <= 0) {
+            throw new IllegalArgumentException(
+                "Release quantity must be greater than zero"
+            );
+        }
+
+        // Concurrent requests valla stock mismatch kakunda row lock chestunnam.
+        Inventory inventory = inventoryRepository
+                .findByProductIdForUpdate(productId)
+                .orElseThrow(() -> new IllegalArgumentException(
+                    "Inventory not found for product: " + productId
+                ));
+
+        // Reserve chesina quantity kanna ekkuva release cheyyakudadhu.
+        if (inventory.getReservedQuantity() < quantity) {
+            throw new IllegalArgumentException(
+                "Release quantity exceeds reserved stock"
+            );
+        }
+
+        // Reserved stock nunchi quantity taggistunnam.
+        inventory.setReservedQuantity(
+            inventory.getReservedQuantity() - quantity
+        );
+
+        // Aa quantity ni available stock ki add chestunnam.
+        inventory.setAvailableQuantity(
+            inventory.getAvailableQuantity() + quantity
+        );
+
+        // Last update time save chestunnam.
+        inventory.setUpdatedAt(LocalDateTime.now());
+
+        // Updated stock database lo save chestunnam.
+        return inventoryRepository.save(inventory);
+    }
+
     
 }
